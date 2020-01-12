@@ -209,7 +209,7 @@ class playChessNew():
                     self.squares(xpos, ypos, width, height, white)
                     if not self.firstBoard.gameTiles[number].pieceOnTile.toString() == "-":
                         img = pygame.image.load(
-                            "./ChessArt/" + self.firstBoard.gameTiles[number].pieceOnTile.alliance[0].upper() +
+                            "./images/" + self.firstBoard.gameTiles[number].pieceOnTile.alliance[0].upper() +
                             self.firstBoard.gameTiles[
                                 number].pieceOnTile.toString().upper() + ".png")
                         img = pygame.transform.scale(img, (100, 100))
@@ -219,7 +219,7 @@ class playChessNew():
                     self.squares(xpos, ypos, width, height, black)
                     if not self.firstBoard.gameTiles[number].pieceOnTile.toString() == "-":
                         img = pygame.image.load(
-                            "./ChessArt/" + self.firstBoard.gameTiles[number].pieceOnTile.alliance[0].upper() +
+                            "./images/" + self.firstBoard.gameTiles[number].pieceOnTile.alliance[0].upper() +
                             self.firstBoard.gameTiles[
                                 number].pieceOnTile.toString().upper() + ".png")
                         img = pygame.transform.scale(img, (100, 100))
@@ -242,7 +242,7 @@ class playChessNew():
             for _ in range(8):
                 if not self.firstBoard.gameTiles[number].pieceOnTile.toString() == "-":
                     img = pygame.image.load(
-                        "./ChessArt/" + self.firstBoard.gameTiles[number].pieceOnTile.alliance[0].upper() +
+                        "./images/" + self.firstBoard.gameTiles[number].pieceOnTile.alliance[0].upper() +
                         self.firstBoard.gameTiles[
                             number].pieceOnTile.toString().upper() + ".png")
                     img = pygame.transform.scale(img, (100, 100))
