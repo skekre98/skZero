@@ -287,9 +287,9 @@ class playChessNew():
             skZero = SKZero()
             fen = self.fen_board.fen()
             skZero.AI.set_fen_position(fen)
-            move = skZero.AI.get_best_move()
-            uci = chess.Move.from_uci(uci)
-            self.fen_board.push(uci)
+            uci = skZero.AI.get_best_move()
+            move = chess.Move.from_uci(uci)
+            self.fen_board.push(move)
             ai_move = self.from_uci(uci)
             
             # Add move to GUI
