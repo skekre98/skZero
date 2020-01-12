@@ -1,4 +1,3 @@
-import sys
 import pygame
 import chess
 import math
@@ -127,9 +126,8 @@ class playChessNew():
                                 uci = self.to_uci(self.allPieces[self.selectedImage][2].position,thisMove.destination)
                                 move = chess.Move.from_uci(uci)
                                 self.fen_board.push(move)
-                                print(self.fen_board)
-                                newBoard = thisMove.createNewBoard()
-                                if not newBoard == False:
+                                newBoard, valid = thisMove.createNewBoard()
+                                if not valid == False:
                                     self.firstBoard = newBoard
 
                                 newP = self.updateChessPieces()
@@ -293,14 +291,22 @@ class playChessNew():
             ai_move = self.from_uci(uci)
             
             # Add move to GUI
-            newBoard = ai_move.createNewBoard()
-            if not newBoard == False:
+            newBoard, valid = ai_move.createNewBoard()
+            if not valid == False:
                 self.firstBoard = newBoard
-
-            newP = self.updateChessPieces()
-            self.allPieces = newP
-            self.currentPlayer = newBoard.currentPlayer
-            self.aiBoard = False
+                newP = self.updateChessPieces()
+                self.allPieces = newP
+                self.currentPlayer = newBoard.currentPlayer
+                self.aiBoard = False
+            else:
+                self.firstBoard = newBoard
+                newP = self.updateChessPieces()
+                self.allPieces = newP
+                self.currentPlayer = newBoard.currentPlayer
+                self.aiBoard = False
+                print("Checkmate!")
+                print("Black wins!") if newBoard.currentPlayer == "White" else print("White wins!")
+                quit()
 
         # if self.currentPlayer == "White":
         #     print("White AI is Thinking...")

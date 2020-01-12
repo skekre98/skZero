@@ -10,7 +10,7 @@ class SKZero:
 
     def __init__(self):
         self.AI = Stockfish(MODEL)
-        self.AI.set_skill_level(20)
+        self.AI.set_skill_level(100)
     
     def get_move(self):
         return self.AI.get_best_move()

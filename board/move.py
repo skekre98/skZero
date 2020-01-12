@@ -114,9 +114,9 @@ class Move:
 
         mate = self.checkCheckmateOrStalemate(newBoard, newBoard.currentPlayer)
         if mate:
-            return False
+            return newBoard, False
 
-        return newBoard
+        return newBoard, True
 
     def checkMateBoard(self):
 
