@@ -1,3 +1,4 @@
+import sys
 import pygame
 import chess
 import math
@@ -27,6 +28,7 @@ class playChessNew():
     prevy = None
 
     aiBoard = None
+    fen_board = chess.Board()
 
     def __init__(self):
         pygame.init()
@@ -124,9 +126,8 @@ class playChessNew():
                                 thisMove = Move(self.firstBoard, self.allPieces[self.selectedImage][2], theMove)
                                 uci = self.to_uci(self.allPieces[self.selectedImage][2].position,thisMove.destination)
                                 move = chess.Move.from_uci(uci)
-                                print(move)
-                                self.firstBoard.ai_board.push(move)
-                                print(self.firstBoard.ai_board)
+                                self.fen_board.push(move)
+                                print(self.fen_board)
                                 newBoard = thisMove.createNewBoard()
                                 if not newBoard == False:
                                     self.firstBoard = newBoard
@@ -255,22 +256,50 @@ class playChessNew():
             ypos += 100
 
         return newPieces
+    
+    def from_uci(self,move):
+        start = move[:2]
+        end = move[2:]
+
+        column = {
+            'a' : 0,
+            'b' : 1,
+            'c' : 2,
+            'd' : 3,
+            'e' : 4,
+            'f' : 5,
+            'g' : 6,
+            'h' : 7
+        }
+
+        start_tile = 8 * (8 - int(start[1])) + column[start[0]]
+        end_tile = 8 * (8 - int(end[1])) + column[end[0]]
+
+        movePiece = self.firstBoard.gameTiles[start_tile].pieceOnTile
+        return Move(self.firstBoard,movePiece,end_tile)
 
     def miniMaxMove(self):
 
         if self.currentPlayer == "Black":
             self.aiBoard = True
+
+            # Engine calculating move 
             skZero = SKZero()
-            fen = self.firstBoard.ai_board.fen()
+            fen = self.fen_board.fen()
             skZero.AI.set_fen_position(fen)
             move = skZero.AI.get_best_move()
+            uci = chess.Move.from_uci(uci)
+            self.fen_board.push(uci)
+            ai_move = self.from_uci(uci)
             
-            # TODO
             # Add move to GUI
-            self.firstBoard = self.aiBoard
+            newBoard = ai_move.createNewBoard()
+            if not newBoard == False:
+                self.firstBoard = newBoard
+
             newP = self.updateChessPieces()
             self.allPieces = newP
-            self.currentPlayer = self.aiBoard.currentPlayer
+            self.currentPlayer = newBoard.currentPlayer
             self.aiBoard = False
 
         # if self.currentPlayer == "White":

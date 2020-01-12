@@ -1,4 +1,3 @@
-import chess 
 from board.tile import Tile
 from pieces import bishop
 from pieces import king
@@ -16,7 +15,6 @@ class Board:
     enPassPawn = None
     enPassPawnBehind = None
     currentPlayer = "White"
-    ai_board = chess.Board()
 
 
     def __init__(self):
