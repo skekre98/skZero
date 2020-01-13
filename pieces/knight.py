@@ -55,16 +55,3 @@ class Knight(Piece):
                 return True
 
         return False
-
-
-
-
-
-
-
-
-
-
-
-    # def move(self, destination):
-    #     return Knight(self.alliance, destination)
