@@ -135,7 +135,7 @@ class playChess():
 
                                 self.currentPlayer = newBoard.currentPlayer
 
-                                thread = threading.Thread(target=self.miniMaxMove, args=[])
+                                thread = threading.Thread(target=self.skZero_move, args=[])
                                 thread.start()
 
 
@@ -276,7 +276,7 @@ class playChess():
         movePiece = self.firstBoard.gameTiles[start_tile].pieceOnTile
         return Move(self.firstBoard,movePiece,end_tile)
 
-    def miniMaxMove(self):
+    def skZero_move(self):
 
         if self.currentPlayer == "Black":
             self.aiBoard = True
