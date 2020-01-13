@@ -7,7 +7,7 @@ import threading
 from skZero import SKZero
 
 
-class playChessNew():
+class playChess():
     gameDisplay = None
     clock = None
 
@@ -308,16 +308,4 @@ class playChessNew():
                 print("Black wins!") if newBoard.currentPlayer == "White" else print("White wins!")
                 quit()
 
-        # if self.currentPlayer == "White":
-        #     print("White AI is Thinking...")
-        #     self.aiBoard = True
-        #     minimax = Minimax(self.firstBoard, 1)
-        #     self.aiBoard = minimax.getMove()
-        #     self.firstBoard = self.aiBoard
-        #     newP = self.updateChessPieces()
-        #     self.allPieces = newP
-        #     self.currentPlayer = self.aiBoard.currentPlayer
-        #     self.aiBoard = False
-
-
-playChessNew()
+playChess()
