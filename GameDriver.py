@@ -200,8 +200,8 @@ class playChessNew():
         color = 0
         width = 100
         height = 100
-        black = (66, 134, 244)
-        white = (143, 155, 175)
+        black = (8, 188, 4)
+        white = (250, 251, 181)
         number = 0
         for _ in range(8):
             for _ in range(8):
